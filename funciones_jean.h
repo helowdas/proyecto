@@ -32,6 +32,7 @@ typedef struct donaciones
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
     int tipo_donacion; // 1 = monetaria, 2 = material, 3 = voluntariado
     char *descripcion;
+    int cantidad;
     float valor_monetario;
     int estado_donacion; 
     struct donaciones* siguiente_donacion;
