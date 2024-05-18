@@ -3,26 +3,6 @@
 # include "funciones_jean.c"
 # define longitud_fecha 3
 
-// NODOS PARA NECESIDADES DEL REFUGIO
-
-typedef struct donaciones_necesidad
-{
-    int fecha[longitud_fecha]; // dias, mes, año; longitud 3
-    int tipo_donacion; // 1 = monetaria, 2 = material
-    int estado_donacion;
-    float valor_monetario;
-    char *descripcion;
-    struct donaciones_necesidad* siguiente_donacion;
-    
-}donaciones_necesidad;
-
-typedef struct necesidad
-{
-    donaciones_necesidad* alimento;
-    donaciones_necesidad* medicina;
-    donaciones_necesidad* mantenimiento;
-    donaciones_necesidad* reparaciones;
-};
 
 
 // NODOS PARA DONANTES Y SUS DONACIONES
@@ -58,6 +38,24 @@ typedef struct donantes
 
 }lista_donantes;
 
+// NODOS PARA NECESIDADES DEL REFUGIO
+
+typedef struct donaciones_necesidad
+{
+    donacion* donacion;
+    struct donaciones_necesidad* siguiente_donacion;
+    
+}donaciones_necesidad;
+
+typedef struct necesidad
+{
+    donaciones_necesidad* alimento; // = 1
+    donaciones_necesidad* medicina; // = 2
+    donaciones_necesidad* mantenimiento; // = 3
+    donaciones_necesidad* reparaciones; // = 4
+
+}lista_necesidad;
+
 // NODO ARTICULOS
 
 typedef struct articulos
@@ -67,6 +65,12 @@ typedef struct articulos
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
 
 }articulo;
+
+typedef struct
+{
+    articulo* inicio;
+
+}lista_articulos;
 
 
 // FUNCIONES
