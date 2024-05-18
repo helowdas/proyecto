@@ -1,6 +1,6 @@
 //FUNCIONES.H
 
-//# include "funciones_jean.c"
+# include "funciones_jean.c"
 # define longitud_fecha 3
 
 // NODOS PARA NECESIDADES DEL REFUGIO
@@ -55,7 +55,7 @@ typedef struct donantes
     donante *inicio;
     donante *final;
 
-}lista_donantes;;
+}lista_donantes;
 
 // NODO ARTICULOS
 
@@ -66,4 +66,8 @@ typedef struct articulos
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
 
 }articulo;
+
+
+// FUNCIONES
+
 
