@@ -38,7 +38,7 @@ typedef struct donantes
     donante *inicio;
     donante *final;
 
-}lista_donantes;;
+}lista_donantes;
 
 // NODOS PARA NECESIDADES DEL REFUGIO
 
