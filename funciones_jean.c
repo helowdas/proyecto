@@ -313,11 +313,60 @@ lista_necesidad* crear_lista_necesidad()
 //funcion crear donacion necesidad
 donaciones_necesidad* crear_donacion_necesidad(donacion* donacion)
 {
-
+    donaciones_necesidad* new_donacion_necesidad = (donaciones_necesidad*)malloc(sizeof(donaciones_necesidad));
+    if(new_donacion_necesidad == NULL)
+    {
+        printf("error de memoria");
+        exit(1);
+    }
+    new_donacion_necesidad->donacion = donacion;
+    new_donacion_necesidad->siguiente_donacion = NULL;
+    return new_donacion_necesidad;
 }
 
-//funcion que inserta una donacion en la lista necesidad
-void insertar_donacion_necesidad(donacion* new_donacion, int necesidad)
+//funcion que inserta una donacion en la lista necesidad deseada
+void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* new_donacion, int necesidad)
 {
+    switch (necesidad)
+    {
+    case 1:
+        if(list->alimento == NULL)
+        {
+            list->alimento = new_donacion;
+        }
+        donaciones_necesidad* aux;
+        for(aux = list->alimento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+        aux->siguiente_donacion = new_donacion;
+        break;
 
+    case 2:
+        if(list->medicina == NULL)
+        {
+            list->medicina = new_donacion;
+        }
+        donaciones_necesidad* aux;
+        for(aux = list->medicina; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+        aux->siguiente_donacion = new_donacion;
+        break;
+
+    case 3:
+        if(list->mantenimiento == NULL)
+        {
+            list->mantenimiento = new_donacion;
+        }
+        donaciones_necesidad* aux;
+        for(aux = list->mantenimiento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+        aux->siguiente_donacion = new_donacion;
+        break;
+    
+    default:
+        if(list->reparaciones == NULL)
+        {
+            list->reparaciones = new_donacion;
+        }
+        donaciones_necesidad* aux;
+        for(aux = list->reparaciones; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+        aux->siguiente_donacion = new_donacion;
+        break;
+    }
 }
