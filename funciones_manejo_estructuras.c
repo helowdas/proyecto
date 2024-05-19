@@ -434,3 +434,17 @@ void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
     aux->siguiente_articulo = new_articulo;
     return;
 }
+
+// FUNCIONES CONTAR
+
+int contar_donaciones(lista_donantes* list, int cedula)
+{
+    donante* donador = buscar_usuario(list, cedula);
+    donacion* aux;
+    int contador;
+    for(aux = donador->donaciones; aux ; aux = aux->siguiente_donacion)
+    {
+        contador++;
+    }
+    return contador;
+}

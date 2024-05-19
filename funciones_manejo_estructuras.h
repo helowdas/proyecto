@@ -62,4 +62,8 @@ articulos* crear_articulo(char* articulo, int cantidad, int fecha[]);
 //funcion ingresa un articulo en la lista articulos
 void ingresa_articulo(lista_articulos* list, articulos* new_articulo);
 
+// FUNCIONES CONTAR
+
+int contar_donaciones(lista_donantes* list, int cedula);
+
 #endif // FUNCIONES_H
