@@ -231,6 +231,7 @@ donante* buscar_usuario(lista_donantes* list, int cedula)
 
 // FUNCIONES DE DONACIONES
 
+//funcion que crea una donacion
 donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad)
 {
     // reservar memoria donacion
