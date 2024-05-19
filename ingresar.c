@@ -1,60 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "estructura.h"
 #define longitud_fecha 3
 
-// este typedef funciona para la funcion ingrearDonacion
-typedef struct donaciones
-{
-    int fecha[longitud_fecha]; // dias, mes, año; longitud 3
-    int tipo_donacion;         // 1 = monetaria, 2 = material, 3 = voluntariado
-    char *descripcion;
-    float valor_monetario;
-    int estado_donacion;
-    struct donaciones *siguiente_donacion;
-} donaciones;
-
-// este typedef funciona para la funcion ingresarDonante
-typedef struct donante
-{
-    char *nombre;
-    int cedula;
-    int telefono;
-    char *direccion;
-    struct donante *siguiente_donante;
-    struct donante *anterior_donante;
-} donante;
 
 // funcion para ingresar datos de donantes
 
-void ingresarDonante(donante *cabeza) {
-    // Creo el nuevo nodo para donante
-    donante* nuevoDonante = (donante*)malloc(sizeof(donante));
+void ingresarDonante() {
 
-    nuevoDonante->nombre = (char*)malloc(100 * sizeof(char));
-    nuevoDonante->cedula = malloc(sizeof(int));
-    nuevoDonante->telefono = malloc(sizeof(int));
-    nuevoDonante->direccion = (char*)malloc(100 * sizeof(char));
+    char *nombre[80];
+    int cedula;
+    int telefono; 
+    char *direccion[200];
 
-    printf("Ingrese el nombre del donante: ");
-    fgets(nuevoDonante->nombre, 100, stdin);
-    nuevoDonante->nombre[strcspn(nuevoDonante->nombre, "\n")] = '\0';
 
-    printf("Ingrese la cedula del donante: ");
-    scanf("%d", nuevoDonante->cedula);
-    
-    printf("Ingrese el telefono del donante: ");
-    scanf("%d", nuevoDonante->telefono);
-  
-    printf("Ingrese la direccion del donante: ");
-    fgets(nuevoDonante->direccion, 100, stdin);
-    nuevoDonante->direccion[strcspn(nuevoDonante->direccion, "\n")] = '\0';
+    printf("ingrese su nombre: ");
+    fgets(nombre, 80 , stdin);
 
-    getchar(); // Para limpiar el buffer 
+    printf("ingrese su cedula: ");
+    scanf("%d", &cedula);
 
-    // Enlaza el nuevo nodo a la lista existente
-    nuevoDonante->siguiente_donante = cabeza;
-    cabeza = nuevoDonante;
+    printf("ingrese su numero de telefono: ");
+    scanf("%d", &telefono);
+
+    printf("ingrese su direccion: ");
+    fgets(direccion, 200 , stdin);
+
+    getchar();
+
+
 }
 
 // funcion para ingresar los donantes
@@ -94,13 +69,31 @@ donaciones *ingresarDonacion()
     scanf("%f", &valor_monetario);
 }
 
+    //funcion para asignar la necesidad
+    int asignarNecesidad(){
+        
+        int opcion;
+        
+        //asignar la necesidad
+
+        printf("escoge el numero a donde quiere asignar su donacion \n1.alimento, \n2.medicina, \n3.mantemiento, \n4.reparacion: ");
+        scanf("%d", &opcion);
+
+        return opcion; 
+
+
+
+    }
+
+
+
 int main()
 {
     donante *cabeza = NULL;
 
     donaciones *cabeza_donaciones = NULL;
 
-    ingresarDonante(cabeza);
+    ingresarDonante();
 
     ingresarDonacion();
 
