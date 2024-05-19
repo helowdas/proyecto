@@ -64,12 +64,13 @@ typedef struct articulos
     char *articulo;
     int cantidad;
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
+    struct articulos* siguiente_articulo;
 
-}articulo;
+}articulos;
 
 typedef struct 
 {
-    articulo* inicio;
+    articulos* inicio;
 
 }lista_articulos;
 
@@ -327,6 +328,8 @@ donaciones_necesidad* crear_donacion_necesidad(donacion* donacion)
 //funcion que inserta una donacion en la lista necesidad deseada
 void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* new_donacion, int necesidad)
 {
+    donaciones_necesidad* aux;
+
     switch (necesidad)
     {
     case 1:
@@ -334,7 +337,6 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->alimento = new_donacion;
         }
-        donaciones_necesidad* aux;
         for(aux = list->alimento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
         aux->siguiente_donacion = new_donacion;
         break;
@@ -344,7 +346,6 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->medicina = new_donacion;
         }
-        donaciones_necesidad* aux;
         for(aux = list->medicina; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
         aux->siguiente_donacion = new_donacion;
         break;
@@ -354,7 +355,6 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->mantenimiento = new_donacion;
         }
-        donaciones_necesidad* aux;
         for(aux = list->mantenimiento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
         aux->siguiente_donacion = new_donacion;
         break;
@@ -364,9 +364,72 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->reparaciones = new_donacion;
         }
-        donaciones_necesidad* aux;
         for(aux = list->reparaciones; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
         aux->siguiente_donacion = new_donacion;
         break;
     }
+}
+
+// FUNCIONES ARTICULOS
+
+//funcion que crea una lista articulos
+lista_articulos* crear_lista_articulos()
+{
+    lista_articulos* new_lista_articulos = (lista_articulos*)malloc(sizeof(lista_articulos));
+    if(new_lista_articulos ==  NULL)
+    {
+        printf("error en memoria!!");
+        exit(1);
+    }
+
+    new_lista_articulos->inicio = NULL;
+    return new_lista_articulos;
+}
+
+//funcion que crea una estructura articulo
+articulos* crear_articulo(char* articulo, int cantidad, int fecha[])
+{
+    articulos* new_articulo = (articulos*)malloc(sizeof(articulos));
+    if(new_articulo == NULL)
+    {
+        printf("error de memoria");
+        exit(1);
+    }
+    new_articulo->siguiente_articulo = NULL;
+
+    //reservar memoria y asignar articulo
+    new_articulo->articulo = (char*)malloc(sizeof(char) * strlen(articulo));
+    if(new_articulo->articulo == NULL)
+    {
+        printf("Error de memoria!");
+        exit(1);
+    }
+    strcpy(new_articulo->articulo, articulo);
+
+    //asignar cantidad
+    new_articulo->cantidad = cantidad;
+    
+    //asignar fecha de donacion del articulo
+    for(int i = 0; i < 3; i++)
+    {
+        new_articulo->fecha[i] = fecha[i];
+    }
+
+    return new_articulo;
+}
+
+//funcion ingresa un articulo en la lista articulos
+void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
+{
+    if(list->inicio == NULL)
+    {
+        list->inicio = new_articulo;
+        return;
+    }
+
+    //llegar el final de la lista de articulos para ingresarla
+    articulos* aux;
+    for(aux = list->inicio; aux->siguiente_articulo ; aux = aux->siguiente_articulo){}
+    aux->siguiente_articulo = new_articulo;
+    return;
 }

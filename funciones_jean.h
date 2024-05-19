@@ -63,16 +63,21 @@ typedef struct articulos
     char *articulo;
     int cantidad;
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
+    struct articulos* siguiente_articulo;
 
-}articulo;
+}articulos;
 
 typedef struct
 {
-    articulo* inicio;
+    articulos* inicio;
 
 }lista_articulos;
 
 
-// FUNCIONES
+// FUNCIONES PARA DONANTES
+
+//crea estructuras lista de donantes
+
+lista_donantes* crear_lista_donantes;
 
 
