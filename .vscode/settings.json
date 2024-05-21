@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "funciones_jean.h": "c"
+        "funciones_jean.h": "c",
+        "funciones_escribir_archivo.h": "c"
     }
 }
