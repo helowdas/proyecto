@@ -21,8 +21,8 @@ void main()
     char* direccion = "calle 2 doña luisa";
     donante* donante = crear_donante(nombre, cedula, telefono, direccion);
     insertar_donante(list, donante);
-    donacion* donacion = crear_donacion(fecha, tipo_donacion, descripcion, valor_monetario, cantidad, estado);
-    insertar_donacion(list,donacion, cedula);
+    nodo_donacion* nodo_donacion = crear_donacion(fecha, tipo_donacion, descripcion, valor_monetario, cantidad, estado);
+    insertar_donacion(list,nodo_donacion, cedula);
     char nombre_archivo[50];
     printf("escribe el nombre del archivo: ");
     scanf("%s", &nombre_archivo);

@@ -9,7 +9,7 @@
 
 // NODOS PARA DONANTES Y SUS DONACIONES
 
-typedef struct donacion
+typedef struct donaciones
 {
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
     int tipo_donacion; // 1 = monetaria, 2 = material, 3 = voluntariado
@@ -17,23 +17,23 @@ typedef struct donacion
     int cantidad;
     float valor_monetario;
     int estado_donacion; 
-    struct donacion* siguiente_donacion;
+    struct donaciones* siguiente_donacion;
 
-}donacion;
+}nodo_donacion;
 
-typedef struct donante
+typedef struct donantes
 {
     char *nombre;
     int cedula;
     int telefono;
     char *direccion;
-    struct donante* siguiente_donante;
-    struct donante* anterior_donante;
-    donacion* donaciones;
+    struct donantes* siguiente_donante;
+    struct donantes* anterior_donante;
+    nodo_donacion* donaciones;
 
 }donante;
 
-typedef struct donantes
+typedef struct
 {
     donante *inicio;
     donante *final;
@@ -42,14 +42,14 @@ typedef struct donantes
 
 // NODOS PARA NECESIDADES DEL REFUGIO
 
-typedef struct donaciones_necesidad
+typedef struct donaciones_necesidades
 {
-    donacion* donacion;
-    struct donaciones_necesidad* siguiente_donacion;
+    nodo_donacion* nodo_donacion;
+    struct donaciones_necesidades* siguiente_donacion;
     
 }donaciones_necesidad;
 
-typedef struct necesidad
+typedef struct 
 {
     donaciones_necesidad* alimento;
     donaciones_necesidad* medicina;
@@ -67,11 +67,11 @@ typedef struct articulos
     int fecha[longitud_fecha]; // dias, mes, año; longitud 3
     struct articulos* siguiente_articulo;
 
-}articulos;
+}articulo;
 
 typedef struct 
 {
-    articulos* inicio;
+    articulo* inicio;
 
 }lista_articulos;
 
@@ -232,11 +232,11 @@ donante* buscar_usuario(lista_donantes* list, int cedula)
 
 // FUNCIONES DE DONACIONES
 
-//funcion que crea una donacion
-donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad, int estado)
+//funcion que crea una nodo_donacion
+nodo_donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad, int estado)
 {
-    // reservar memoria donacion
-    donacion* new_donacion = (donacion*)malloc(sizeof(donacion));
+    // reservar memoria nodo_donacion
+    nodo_donacion* new_donacion = (nodo_donacion*)malloc(sizeof(nodo_donacion));
     if(new_donacion == NULL)
     {
         printf("Error de memoria!");
@@ -244,7 +244,7 @@ donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, floa
     }
     new_donacion->siguiente_donacion = NULL;
 
-    //asignar tipo de donacion
+    //asignar tipo de nodo_donacion
     new_donacion->tipo_donacion = tipo_donacion;
 
     //reservar memoria descripcion y asignar descripcion
@@ -259,10 +259,10 @@ donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, floa
     //asignar valor monetario
     new_donacion->valor_monetario = valor_monetario;
 
-    //asignar estado de donacion
+    //asignar estado de nodo_donacion
     new_donacion->estado_donacion = estado;
 
-    //asignar fecha de donacion
+    //asignar fecha de nodo_donacion
     for(int i = 0; i < 3; i++)
     {
         new_donacion->fecha[i] = fecha[i];
@@ -276,8 +276,8 @@ donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, floa
 }
 
 
-//funcion insertar donacion
-void insertar_donacion(lista_donantes* list, donacion* new_donacion, int cedula)
+//funcion insertar nodo_donacion
+void insertar_donacion(lista_donantes* list, nodo_donacion* new_donacion, int cedula)
 {
     donante* usuario = buscar_usuario(list, cedula);
 
@@ -288,7 +288,7 @@ void insertar_donacion(lista_donantes* list, donacion* new_donacion, int cedula)
     }
 
     //llegar el final de la lista de donaciones para ingresarla
-    donacion* aux;
+    nodo_donacion* aux;
     for(aux = usuario->donaciones; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
     aux->siguiente_donacion = new_donacion;
     return;
@@ -313,8 +313,8 @@ lista_necesidad* crear_lista_necesidad()
     return new_lista_necesidad;
 }
 
-//funcion crear donacion necesidad
-donaciones_necesidad* crear_donacion_necesidad(donacion* donacion)
+//funcion crear nodo_donacion necesidad
+donaciones_necesidad* crear_donacion_necesidad(nodo_donacion* nodo_donacion)
 {
     donaciones_necesidad* new_donacion_necesidad = (donaciones_necesidad*)malloc(sizeof(donaciones_necesidad));
     if(new_donacion_necesidad == NULL)
@@ -322,12 +322,12 @@ donaciones_necesidad* crear_donacion_necesidad(donacion* donacion)
         printf("error de memoria");
         exit(1);
     }
-    new_donacion_necesidad->donacion = donacion;
+    new_donacion_necesidad->nodo_donacion = nodo_donacion;
     new_donacion_necesidad->siguiente_donacion = NULL;
     return new_donacion_necesidad;
 }
 
-//funcion que inserta una donacion en la lista necesidad deseada
+//funcion que inserta una nodo_donacion en la lista necesidad deseada
 void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* new_donacion, int necesidad)
 {
     donaciones_necesidad* aux;
@@ -401,9 +401,9 @@ lista_articulos* crear_lista_articulos()
 }
 
 //funcion que crea una estructura articulo
-articulos* crear_articulo(char* articulo, int cantidad, int fecha[])
+articulo* crear_articulo(char* articulos, int cantidad, int fecha[])
 {
-    articulos* new_articulo = (articulos*)malloc(sizeof(articulos));
+    articulo* new_articulo = (articulo*)malloc(sizeof(articulo));
     if(new_articulo == NULL)
     {
         printf("error de memoria");
@@ -412,18 +412,18 @@ articulos* crear_articulo(char* articulo, int cantidad, int fecha[])
     new_articulo->siguiente_articulo = NULL;
 
     //reservar memoria y asignar articulo
-    new_articulo->articulo = (char*)malloc(sizeof(char) * strlen(articulo));
+    new_articulo->articulo = (char*)malloc(sizeof(char) * strlen(articulos));
     if(new_articulo->articulo == NULL)
     {
         printf("Error de memoria!");
         exit(1);
     }
-    strcpy(new_articulo->articulo, articulo);
+    strcpy(new_articulo->articulo, articulos);
 
     //asignar cantidad
     new_articulo->cantidad = cantidad;
     
-    //asignar fecha de donacion del articulo
+    //asignar fecha de nodo_donacion del articulo
     for(int i = 0; i < 3; i++)
     {
         new_articulo->fecha[i] = fecha[i];
@@ -433,7 +433,7 @@ articulos* crear_articulo(char* articulo, int cantidad, int fecha[])
 }
 
 //funcion ingresa un articulo en la lista articulos
-void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
+void ingresa_articulo(lista_articulos* list, articulo* new_articulo)
 {
     if(list->inicio == NULL)
     {
@@ -442,7 +442,7 @@ void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
     }
 
     //llegar el final de la lista de articulos para ingresarla
-    articulos* aux;
+    articulo* aux;
     for(aux = list->inicio; aux->siguiente_articulo ; aux = aux->siguiente_articulo){}
     aux->siguiente_articulo = new_articulo;
     return;
@@ -454,7 +454,7 @@ void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
 int contar_donaciones(lista_donantes* list, int cedula)
 {
     donante* donador = buscar_usuario(list, cedula);
-    donacion* aux;
+    nodo_donacion* aux;
     int contador;
     for(aux = donador->donaciones; aux ; aux = aux->siguiente_donacion)
     {
@@ -469,7 +469,7 @@ int contar_donaciones(lista_donantes* list, int cedula)
 // liberar los articulos
 void liberar_lista_articulos(lista_articulos* lista_articulos)
 {
-    articulos* aux;
+    articulo* aux;
     
     for(aux = lista_articulos->inicio; lista_articulos->inicio ; aux = lista_articulos->inicio)
     {
@@ -515,7 +515,7 @@ void liberar_lista_necesidad(lista_necesidad* lista_necesidad)
 void liberar_lista_donantes(lista_donantes* lista_donantes)
 {
     donante* aux_donante;
-    donacion* aux_donacion;
+    nodo_donacion* aux_donacion;
 
     for(aux_donante = lista_donantes->inicio; lista_donantes->inicio ; aux_donante = lista_donantes->inicio)
     {
