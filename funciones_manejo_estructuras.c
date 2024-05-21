@@ -55,6 +55,7 @@ typedef struct necesidad
     donaciones_necesidad* medicina;
     donaciones_necesidad* mantenimiento;
     donaciones_necesidad* reparaciones;
+
 }lista_necesidad;
 
 // NODO ARTICULOS
@@ -338,8 +339,11 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->alimento = new_donacion;
         }
-        for(aux = list->alimento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
-        aux->siguiente_donacion = new_donacion;
+        else
+        {
+            for(aux = list->alimento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+            aux->siguiente_donacion = new_donacion;
+        }
         break;
 
     case 2:
@@ -347,8 +351,11 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->medicina = new_donacion;
         }
-        for(aux = list->medicina; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
-        aux->siguiente_donacion = new_donacion;
+        else
+        {
+            for(aux = list->medicina; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+            aux->siguiente_donacion = new_donacion;
+        }
         break;
 
     case 3:
@@ -356,8 +363,11 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->mantenimiento = new_donacion;
         }
-        for(aux = list->mantenimiento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
-        aux->siguiente_donacion = new_donacion;
+        else
+        {
+            for(aux = list->mantenimiento; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+            aux->siguiente_donacion = new_donacion;
+        }
         break;
     
     default:
@@ -365,8 +375,11 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
         {
             list->reparaciones = new_donacion;
         }
-        for(aux = list->reparaciones; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
-        aux->siguiente_donacion = new_donacion;
+        else
+        {
+            for(aux = list->reparaciones; aux->siguiente_donacion ; aux = aux->siguiente_donacion){}
+            aux->siguiente_donacion = new_donacion;
+        }
         break;
     }
 }
@@ -432,5 +445,105 @@ void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
     articulos* aux;
     for(aux = list->inicio; aux->siguiente_articulo ; aux = aux->siguiente_articulo){}
     aux->siguiente_articulo = new_articulo;
+    return;
+}
+
+
+// FUNCIONES PARA CONTAR
+
+int contar_donaciones(lista_donantes* list, int cedula)
+{
+    donante* donador = buscar_usuario(list, cedula);
+    donacion* aux;
+    int contador;
+    for(aux = donador->donaciones; aux ; aux = aux->siguiente_donacion)
+    {
+        contador++;
+    }
+    return contador;
+}
+
+// FUNCIONES DE LIBERACION DE MEMORIA
+
+
+// liberar los articulos
+void liberar_lista_articulos(lista_articulos* lista_articulos)
+{
+    articulos* aux;
+    
+    for(aux = lista_articulos->inicio; lista_articulos->inicio ; aux = lista_articulos->inicio)
+    {
+        lista_articulos->inicio = aux->siguiente_articulo;
+        free(aux);
+    }
+    return;
+}
+
+// liberar las necesidades
+void liberar_lista_necesidad(lista_necesidad* lista_necesidad)
+{
+    donaciones_necesidad* aux;
+    
+    for(aux = lista_necesidad->alimento; lista_necesidad->alimento ; aux = lista_necesidad->alimento)
+    {
+        lista_necesidad->alimento = aux->siguiente_donacion;
+        free(aux);
+    }
+
+    for(aux = lista_necesidad->mantenimiento; lista_necesidad->mantenimiento ; aux = lista_necesidad->mantenimiento)
+    {
+        lista_necesidad->mantenimiento = aux->siguiente_donacion;
+        free(aux);
+    }
+
+    for(aux = lista_necesidad->medicina; lista_necesidad->medicina ; aux = lista_necesidad->medicina)
+    {
+        lista_necesidad->medicina = aux->siguiente_donacion;
+        free(aux);
+    }
+
+    for(aux = lista_necesidad->reparaciones; lista_necesidad->reparaciones ; aux = lista_necesidad->reparaciones)
+    {
+        lista_necesidad->reparaciones = aux->siguiente_donacion;
+        free(aux);
+    }
+
+    return;
+}
+
+//funcion libera donantes
+void liberar_lista_donantes(lista_donantes* lista_donantes)
+{
+    donante* aux_donante;
+    donacion* aux_donacion;
+
+    for(aux_donante = lista_donantes->inicio; lista_donantes->inicio ; aux_donante = lista_donantes->inicio)
+    {
+        lista_donantes->inicio = aux_donante->siguiente_donante;
+
+        //libera las donaciones asignadas al donante
+        for(aux_donacion = aux_donante->donaciones; aux_donante->donaciones ; aux_donacion = aux_donante->donaciones)
+        {
+            aux_donante->donaciones = aux_donacion->siguiente_donacion;
+            free(aux_donacion);
+        }
+
+        free(aux_donante);
+    }
+
+    lista_donantes->final = NULL;
+    return;
+}
+
+
+//funcion liberar las listas
+void liberar_memoria(lista_articulos* lista_articulos, lista_donantes* lista_donantes, lista_necesidad* lista_necesidad)
+{
+    liberar_lista_articulos(lista_articulos);
+    liberar_lista_donantes(lista_donantes);
+    liberar_lista_necesidad(lista_necesidad);
+    free(lista_articulos);
+    free(lista_donantes);
+    free(lista_necesidad);
     return;
 }

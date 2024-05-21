@@ -66,4 +66,18 @@ void ingresa_articulo(lista_articulos* list, articulos* new_articulo);
 
 int contar_donaciones(lista_donantes* list, int cedula);
 
+// FUNCIONES LIBERAR MEMORIA
+
+// liberar los articulos
+void liberar_lista_articulos(lista_articulos* lista_articulos);
+
+// liberar las necesidades
+void liberar_lista_necesidad(lista_necesidad* lista_necesidad);
+
+//funcion libera donantes
+void liberar_lista_donantes(lista_donantes* lista_donantes);
+
+//funcion liberar las listas
+void liberar_memoria(lista_articulos* lista_articulos, lista_donantes* lista_donantes, lista_necesidad* lista_necesidad);
+
 #endif // FUNCIONES_H
