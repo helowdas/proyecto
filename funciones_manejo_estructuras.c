@@ -490,9 +490,11 @@ void liberar_lista_necesidad(lista_necesidad* lista_necesidad)
         free(aux);
     }
 
-    for(aux = lista_necesidad->mantenimiento; lista_necesidad->mantenimiento ; aux = lista_necesidad->mantenimiento)
+    donaciones_necesidad* aux2;
+
+    for(aux2 = lista_necesidad->mantenimiento; lista_necesidad->mantenimiento ; aux2 = lista_necesidad->mantenimiento)
     {
-        lista_necesidad->mantenimiento = aux->siguiente_donacion;
+        lista_necesidad->mantenimiento = aux2->siguiente_donacion;
         free(aux);
     }
 
@@ -539,9 +541,9 @@ void liberar_lista_donantes(lista_donantes* lista_donantes)
 //funcion liberar las listas
 void liberar_memoria(lista_articulos* lista_articulos, lista_donantes* lista_donantes, lista_necesidad* lista_necesidad)
 {
+    liberar_lista_necesidad(lista_necesidad);
     liberar_lista_articulos(lista_articulos);
     liberar_lista_donantes(lista_donantes);
-    liberar_lista_necesidad(lista_necesidad);
     free(lista_articulos);
     free(lista_donantes);
     free(lista_necesidad);

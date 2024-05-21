@@ -3,4 +3,4 @@
 # include <string.h>
 # include "funciones_manejo_estructuras.h"
 
-void leer_donaciones(char)
+void leer_donaciones(char);
