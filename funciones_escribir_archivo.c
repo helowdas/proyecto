@@ -16,7 +16,7 @@ void reiniciar_archivo(char nombre_archivo[])
     return;
 }
 
-void escribir_detalle_nodo_donaciones(char nombre_archivo[], lista_donantes* list)
+void escribir_detalle_donaciones(char nombre_archivo[], lista_donantes* list)
 {
     FILE* archivo;
     archivo = fopen(nombre_archivo, "a");
@@ -81,7 +81,7 @@ void escribir_detalle_nodo_donaciones(char nombre_archivo[], lista_donantes* lis
     return;
 }
 
-void escribir_asignacion_nodo_donaciones(char nombre_archivo[], lista_necesidad* lista_necesidad)
+void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* lista_necesidad)
 {
     
     FILE* archivo;
@@ -335,8 +335,8 @@ void escribir_detalles_donantes(char nombre_archivo[], lista_donantes* lista_don
 void escribir_archivo(char nombre_archivo[], lista_articulos* list_articulos, lista_donantes* list_donantes, lista_necesidad* list_necesidad)
 {
     reiniciar_archivo(nombre_archivo);
-    escribir_detalle_nodo_donaciones(nombre_archivo, list_donantes);
-    escribir_asignacion_nodo_donaciones(nombre_archivo, list_necesidad);
+    escribir_detalle_donaciones(nombre_archivo, list_donantes);
+    escribir_asignacion_donaciones(nombre_archivo, list_necesidad);
     escribir_detalle_articulos(nombre_archivo, list_articulos);
     escribir_detalles_donantes(nombre_archivo, list_donantes);
     return;
