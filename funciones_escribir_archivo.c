@@ -324,7 +324,7 @@ void escribir_detalles_donantes(char nombre_archivo[], lista_donantes* lista_don
         fprintf(archivo, "cedula: %d\n", aux_donantes->cedula);
         fprintf(archivo, "telefono: %d\n", aux_donantes->telefono);
         fprintf(archivo, "dirreccion: %s\n", aux_donantes->direccion);
-        fprintf(archivo, "cantidad de nodo_donaciones: %d", contar_nodo_donaciones(lista_donantes, aux_donantes->cedula));
+        fprintf(archivo, "cantidad de nodo_donaciones: %d", contar_donaciones(lista_donantes, aux_donantes->cedula));
     }
 
     fputs("--------------------", archivo);

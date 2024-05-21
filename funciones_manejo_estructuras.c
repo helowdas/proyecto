@@ -401,7 +401,7 @@ lista_articulos* crear_lista_articulos()
 }
 
 //funcion que crea una estructura articulo
-articulo* crear_articulo(char* articulos, int cantidad, int fecha[])
+articulo* crear_articulo(char* nombre_articulo, int cantidad, int fecha[])
 {
     articulo* new_articulo = (articulo*)malloc(sizeof(articulo));
     if(new_articulo == NULL)
@@ -412,13 +412,13 @@ articulo* crear_articulo(char* articulos, int cantidad, int fecha[])
     new_articulo->siguiente_articulo = NULL;
 
     //reservar memoria y asignar articulo
-    new_articulo->articulo = (char*)malloc(sizeof(char) * strlen(articulos));
+    new_articulo->articulo = (char*)malloc(sizeof(char) * strlen(nombre_articulo));
     if(new_articulo->articulo == NULL)
     {
         printf("Error de memoria!");
         exit(1);
     }
-    strcpy(new_articulo->articulo, articulos);
+    strcpy(new_articulo->articulo, nombre_articulo);
 
     //asignar cantidad
     new_articulo->cantidad = cantidad;

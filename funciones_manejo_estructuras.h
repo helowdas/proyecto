@@ -57,10 +57,10 @@ void insertar_donacion_necesidad(lista_necesidad* list, donaciones_necesidad* ne
 lista_articulos* crear_lista_articulos();
 
 //funcion que crea una estructura articulo
-articulos* crear_articulo(char* articulo, int cantidad, int fecha[]);
+articulo* crear_articulo(char* nombre_articulo, int cantidad, int fecha[]);
 
 //funcion ingresa un articulo en la lista articulos
-void ingresa_articulo(lista_articulos* list, articulos* new_articulo);
+void ingresa_articulo(lista_articulos* list, articulo* new_articulo);
 
 // FUNCIONES CONTAR
 
