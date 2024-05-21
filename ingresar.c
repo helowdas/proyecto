@@ -20,6 +20,7 @@ donante *ingresarDonante(lista_donantes *Lista_donante)
     scanf("%d", &cedula);
     getchar();
 
+
     printf("ingrese su numero de telefono: ");
     scanf("%d", &telefono);
     getchar();
@@ -38,14 +39,14 @@ donante *ingresarDonante(lista_donantes *Lista_donante)
 }
 
 // funcion para ingresar los donantes
-donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador, lista_articulos *listado_articulo)
+nodo_donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador, lista_articulos *listado_articulo)
 {
 
-    float valor_monetario = 0;
-    int cantidad = 0;
+    float valor_monetario;
+    int cantidad;
     int fecha[3];
-    char aux[100] = "No aplica";
-    int estado = 1;
+    char aux[100];
+    int estado;
 
     printf("Ingrese la fecha. \n");
 
@@ -71,7 +72,7 @@ donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador, list
     if (tipo_donacion == 1)
     {
         printf("Ingrese el valor monetario: ");
-        scanf("%f", &valor_monetario);
+        scanf("%d", &valor_monetario);
         getchar();
     }
 
@@ -86,14 +87,14 @@ donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador, list
 
         // implementar funcion crear articulo
 
-        articulos *nuevo_articulo = crear_articulo(aux, cantidad, fecha);
+        struct articulos *nuevo_articulo = crear_articulo(aux, cantidad, fecha);
 
         // implementar guardar articulo
 
         ingresa_articulo(listado_articulo, nuevo_articulo);
     }
 
-    donacion *nueva_donacion = crear_donacion(fecha, tipo_donacion, aux, valor_monetario, cantidad, estado);
+    nodo_donacion *nueva_donacion = crear_donacion(fecha, tipo_donacion, aux, valor_monetario, cantidad, estado);
 
     if (donador->donaciones == NULL)
     {
@@ -103,7 +104,7 @@ donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador, list
     else
     {
 
-        donacion *actual = donador->donaciones;
+        nodo_donacion *actual = donador->donaciones;
         while (actual->siguiente_donacion != NULL)
         {
             actual = actual->siguiente_donacion;
@@ -115,7 +116,7 @@ donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador, list
 }
 
 // funcion para asignar la necesidad
-void asignarNecesidad(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, donacion *nueva_donacion)
+void asignarNecesidad(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, nodo_donacion *nueva_donacion)
 {
 
     int opcion;
@@ -158,6 +159,9 @@ int donar(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, lis
         int cedula;
         printf("ingrese su cedula para verificar: ");
         scanf("%d", &cedula);
+
+        
+
         getchar();
 
         if (usuario_existe(Lista_donante, cedula) == 1)
@@ -166,10 +170,14 @@ int donar(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, lis
 
             //donacion *donador = ingresarDonante(Lista_donante)
 
+            
+
             printf("¿Desea ingresar una donación?");
             if (registro())
             {
-                donacion *nueva_donacion = ingresarDonacion(Lista_donante, donador, listado_articulo);
+                
+                nodo_donacion *nueva_donacion = ingresarDonacion(Lista_donante, donador, listado_articulo);
+                printf("%p", (void*)nueva_donacion); //printf para verificar si esta guardando bien los datos 
                 asignarNecesidad(Lista_donante, listado_necesidad, nueva_donacion);
             }
             else
@@ -192,7 +200,7 @@ int donar(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, lis
         {
             donante *donador = ingresarDonante(Lista_donante);
             insertar_donante(Lista_donante, donador);
-            donacion *nueva_donacion = ingresarDonacion(Lista_donante, donador, listado_articulo);
+            nodo_donacion *nueva_donacion = ingresarDonacion(Lista_donante, donador, listado_articulo);
             asignarNecesidad(Lista_donante, listado_necesidad, nueva_donacion);
         }
         else
