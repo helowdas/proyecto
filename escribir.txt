@@ -1,0 +1,16 @@
+DETALLE DONACIONES
+
+DONANTE:
+nombre: jean paul
+cedula: 5566
+telefono: 21214444
+dirreccion: calle 2 doña luisa
+DONACIONES:
+donacion:
+fecha: 1/4/10
+tipo de donacion: monetario
+descripcion: holaaa
+valor monetario: 5.00
+estado donacion: no disponible
+
+--------------------
