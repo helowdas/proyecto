@@ -38,7 +38,7 @@ typedef struct donantes
     donante *inicio;
     donante *final;
 
-}lista_donantes;;
+}lista_donantes;
 
 // NODOS PARA NECESIDADES DEL REFUGIO
 
@@ -433,18 +433,4 @@ void ingresa_articulo(lista_articulos* list, articulos* new_articulo)
     for(aux = list->inicio; aux->siguiente_articulo ; aux = aux->siguiente_articulo){}
     aux->siguiente_articulo = new_articulo;
     return;
-}
-
-// FUNCIONES CONTAR
-
-int contar_donaciones(lista_donantes* list, int cedula)
-{
-    donante* donador = buscar_usuario(list, cedula);
-    donacion* aux;
-    int contador;
-    for(aux = donador->donaciones; aux ; aux = aux->siguiente_donacion)
-    {
-        contador++;
-    }
-    return contador;
 }
