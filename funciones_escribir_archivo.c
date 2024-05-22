@@ -45,11 +45,11 @@ void escribir_detalle_donaciones(char nombre_archivo[], lista_donantes* list)
         {
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 3; i++)
             {
                 fprintf(archivo, "%d/", aux_nodo_donacion->fecha[i]);
             }
-            fprintf(archivo, "%d\n", aux_nodo_donacion->fecha[2]);
+            fputs("\n", archivo);
             fputs("tipo de donacion: ", archivo);
             switch (aux_nodo_donacion->tipo_donacion)
             {
@@ -91,6 +91,15 @@ void escribir_detalle_donaciones(char nombre_archivo[], lista_donantes* list)
             default:
                 fputs("no aplica\n", archivo);
                 break;
+            }
+            
+            if (aux_nodo_donacion->cantidad == 0)
+            {
+                fprintf(archivo, "cantidad: no aplica");
+            }
+            else
+            {
+                fprintf(archivo, "cantidad: %d\n", aux_nodo_donacion->cantidad);
             }
             fputs("\n", archivo);
         }
@@ -134,11 +143,11 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
 
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 3; i++)
             {
                 fprintf(archivo, "%d/", aux_nodo_donacion->fecha[i]);
             }
-            fprintf(archivo, "%d\n", aux_nodo_donacion->fecha[2]);
+            fputs("\n", archivo);
             fputs("tipo de donacion: ", archivo);
             switch (aux_nodo_donacion->tipo_donacion)
             {
@@ -184,11 +193,11 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
 
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 3; i++)
             {
                 fprintf(archivo, "%d/", aux_nodo_donacion->fecha[i]);
             }
-            fprintf(archivo, "%d\n", aux_nodo_donacion->fecha[2]);
+            fputs("\n", archivo);
             fputs("tipo de donacion: ", archivo);
             switch (aux_nodo_donacion->tipo_donacion)
             {
@@ -233,11 +242,11 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
 
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 3; i++)
             {
                 fprintf(archivo, "%d/", aux_nodo_donacion->fecha[i]);
             }
-            fprintf(archivo, "%d\n", aux_nodo_donacion->fecha[2]);
+            fputs("\n", archivo);
             fputs("tipo de donacion: ", archivo);
             switch (aux_nodo_donacion->tipo_donacion)
             {
@@ -282,11 +291,11 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
 
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 3; i++)
             {
                 fprintf(archivo, "%d/", aux_nodo_donacion->fecha[i]);
             }
-            fprintf(archivo, "%d\n", aux_nodo_donacion->fecha[2]);
+            fputs("\n", archivo);
             fputs("tipo de donacion: ", archivo);
             switch (aux_nodo_donacion->tipo_donacion)
             {
@@ -340,11 +349,11 @@ void escribir_detalle_articulos(char nombre_archivo[], lista_articulos* lista_ar
             fprintf(archivo, "nombre: %s\n", aux_articulos->articulo);
             fprintf(archivo, "cantidad: %d\n", aux_articulos->cantidad);
             fputs("fecha de recepcion: ", archivo);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 3; i++)
             {
                 fprintf(archivo, "%d/", aux_articulos->fecha[i]);
             }
-            fprintf(archivo, "%d\n", aux_articulos->fecha[2]);
+            fputs("\n", archivo);
 
             fputs("\n", archivo);
         }
@@ -378,6 +387,7 @@ void escribir_detalles_donantes(char nombre_archivo[], lista_donantes* lista_don
         fprintf(archivo, "telefono: %d\n", aux_donantes->telefono);
         fprintf(archivo, "dirreccion: %s\n", aux_donantes->direccion);
         fprintf(archivo, "cantidad de donaciones: %d\n", contar_donaciones(lista_donantes, aux_donantes->cedula));
+        fputs("\n", archivo);
     }
 
     fputs("--------------------", archivo);

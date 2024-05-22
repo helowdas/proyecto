@@ -52,10 +52,10 @@ typedef struct donaciones_necesidades
 
 typedef struct 
 {
-    donaciones_necesidad* alimento;
-    donaciones_necesidad* medicina;
-    donaciones_necesidad* mantenimiento;
-    donaciones_necesidad* reparaciones;
+    donaciones_necesidad* alimento; // = 1
+    donaciones_necesidad* medicina; // = 2
+    donaciones_necesidad* mantenimiento; // = 3
+    donaciones_necesidad* reparaciones; // = 3
 
 }lista_necesidad;
 

@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "funciones_manejo_estructuras.c"
+#include "funciones_escribir_archivo.h"
+#include "funciones_leer_archivo.h"
+
 #define longitud_fecha 3
 
 // Función para ingresar datos de donantes
