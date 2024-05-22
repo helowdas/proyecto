@@ -270,8 +270,11 @@ nodo_donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion,
     }
 
     //asignar cantidad de articulo donando
-
     new_donacion->cantidad = cantidad;
+
+    //asigna a que necesidad se asigno
+
+    new_donacion->asignacion = asignacion;
 
     return new_donacion;
 }
