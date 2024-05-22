@@ -5,12 +5,67 @@ nombre: jean paul
 cedula: 5566
 telefono: 21214444
 dirreccion: calle 2 doña luisa
+
 DONACIONES:
 donacion:
-fecha: 1/4/10
+fecha: 1/4/10/
 tipo de donacion: monetario
 descripcion: holaaa
 valor monetario: 5.00
 estado donacion: no disponible
+asignacion: mantenimiento
+cantidad: 2
+
+donacion:
+fecha: 1/4/10/
+tipo de donacion: monetario
+descripcion: holaaa
+valor monetario: 5.00
+estado donacion: no disponible
+asignacion: mantenimiento
+cantidad: no aplica
+--------------------
+ASIGNACION DONACIONES
+
+ALIMENTO:
+
+LISTA VACIA
+
+MEDICINA:
+
+LISTA VACIA
+
+MANTENIMIENTO:
+
+donacion:
+fecha: 1/4/10/
+tipo de donacion: monetario
+descripcion: holaaa
+valor monetario: 5.00
+estado donacion: no disponible
+
+donacion:
+fecha: 1/4/10/
+tipo de donacion: monetario
+descripcion: holaaa
+valor monetario: 5.00
+estado donacion: no disponible
+
+REPARACIONES:
+
+LISTA VACIA
+
+--------------------
+DETALLES ARTICULOS
+
+--------------------
+DETALLES DONANTES
+
+DONANTE:
+nombre: jean paul
+cedula: 5566
+telefono: 21214444
+dirreccion: calle 2 doña luisa
+cantidad de donaciones: 2
 
 --------------------
