@@ -14,6 +14,7 @@ void main()
     int cantidad = 0;
     float valor_monetario = 5;
     int estado = 0;
+    int asignacion = 3;
     lista_donantes* list_donantes = crear_lista_donantes();
     lista_articulos* list_articulos = crear_lista_articulos();
     lista_necesidad* lista_necesidad = crear_lista_necesidad();
@@ -23,7 +24,7 @@ void main()
     char* direccion = "calle 2 doña luisa";
     donante* donante = crear_donante(nombre, cedula, telefono, direccion);
     insertar_donante(list_donantes, donante);
-    nodo_donacion* nodo_donaciones = crear_donacion(fecha, tipo_donacion, descripcion, valor_monetario, cantidad, estado);
+    nodo_donacion* nodo_donaciones = crear_donacion(fecha, tipo_donacion, descripcion, valor_monetario, cantidad, estado, asignacion);
     insertar_donacion(list_donantes,nodo_donaciones, cedula);
     cantidad = 2;
     articulo* new_articulo = crear_articulo(nombre, cantidad, fecha);

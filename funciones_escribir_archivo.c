@@ -6,7 +6,7 @@
 void reiniciar_archivo(char nombre_archivo[])
 {
     FILE* archivo;
-    archivo = fopen(nombre_archivo, "w");
+    archivo = fopen(nombre_archivo, "w"); 
     if (archivo == NULL)
     {
         printf("error a abrir archivo\n");
@@ -73,6 +73,25 @@ void escribir_detalle_donaciones(char nombre_archivo[], lista_donantes* list)
                 fprintf(archivo, "valor monetario: %.2f\n", aux_nodo_donacion->valor_monetario);
             }
             fprintf(archivo, aux_nodo_donacion->estado_donacion?"estado donacion: disponible\n": "estado donacion: no disponible\n");
+            fputs("asignacion: ", archivo);
+            switch (aux_nodo_donacion->asignacion)
+            {
+            case 1:
+                fputs("alimento\n", archivo);
+                break;
+            case 2: 
+                fputs("medicina\n", archivo);
+                break;
+            case 3:
+                fputs("mantenimiento\n", archivo);
+                break;
+            case 4:
+                fputs("reparaciones\n", archivo);
+                break;
+            default:
+                fputs("no aplica\n", archivo);
+                break;
+            }
             fputs("\n", archivo);
         }
     }
