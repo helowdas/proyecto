@@ -490,11 +490,9 @@ void liberar_lista_necesidad(lista_necesidad* lista_necesidad)
         free(aux);
     }
 
-    donaciones_necesidad* aux2;
-
-    for(aux2 = lista_necesidad->mantenimiento; lista_necesidad->mantenimiento ; aux2 = lista_necesidad->mantenimiento)
+    for(aux = lista_necesidad->mantenimiento; lista_necesidad->mantenimiento ; aux = lista_necesidad->mantenimiento)
     {
-        lista_necesidad->mantenimiento = aux2->siguiente_donacion;
+        lista_necesidad->mantenimiento = aux->siguiente_donacion;
         free(aux);
     }
 

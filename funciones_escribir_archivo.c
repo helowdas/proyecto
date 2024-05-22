@@ -97,13 +97,20 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
     fputs("\n", archivo);
 
     donaciones_necesidad* aux_necesidad;
+    nodo_donacion* aux_nodo_donacion;
     aux_necesidad = lista_necesidad->alimento;
     fputs("ALIMENTO:\n", archivo);
     fputs("\n", archivo);
-    nodo_donacion* aux_nodo_donacion;
-
-    for(aux_nodo_donacion = aux_necesidad->nodo_donacion; aux_necesidad ; aux_nodo_donacion = aux_necesidad->nodo_donacion)
+    if(aux_necesidad == NULL)
+    {
+        fputs("LISTA VACIA\n", archivo);
+        fputs("\n", archivo);
+    }
+    else
+    {
+    for(; aux_necesidad != NULL ;)
         {
+            aux_nodo_donacion = aux_necesidad->nodo_donacion;
             aux_necesidad = aux_necesidad->siguiente_donacion;
 
             fputs("donacion:\n", archivo);
@@ -138,15 +145,24 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
             fprintf(archivo, aux_nodo_donacion->estado_donacion?"estado donacion: disponible\n": "estado donacion: no disponible\n");
             fputs("\n", archivo);
         }
+    }
 
     aux_necesidad = lista_necesidad->medicina;
     fputs("MEDICINA:\n", archivo);
     fputs("\n", archivo);
-
-    for(aux_nodo_donacion = aux_necesidad->nodo_donacion; aux_necesidad ; aux_nodo_donacion = aux_necesidad->nodo_donacion)
+    if(aux_necesidad == NULL)
+    {
+        fputs("LISTA VACIA\n", archivo);
+        fputs("\n", archivo);
+    }
+    else
+    {
+    
+    for(; aux_necesidad != NULL ;)
         {
+            aux_nodo_donacion = aux_necesidad->nodo_donacion;
             aux_necesidad = aux_necesidad->siguiente_donacion;
-            
+
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
             for(int i = 0; i < 2; i++)
@@ -179,15 +195,23 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
             fprintf(archivo, aux_nodo_donacion->estado_donacion?"estado donacion: disponible\n": "estado donacion: no disponible\n");
             fputs("\n", archivo);
         }
+    }
 
     aux_necesidad = lista_necesidad->mantenimiento;
     fputs("MANTENIMIENTO:\n", archivo);
     fputs("\n", archivo);
-
-    for(aux_nodo_donacion = aux_necesidad->nodo_donacion; aux_necesidad ; aux_nodo_donacion = aux_necesidad->nodo_donacion)
+    if(aux_necesidad == NULL)
+    {
+        fputs("LISTA VACIA\n", archivo);
+        fputs("\n", archivo);
+    }
+    else
+    {
+    for(; aux_necesidad != NULL ;)
         {
+            aux_nodo_donacion = aux_necesidad->nodo_donacion;
             aux_necesidad = aux_necesidad->siguiente_donacion;
-            
+
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
             for(int i = 0; i < 2; i++)
@@ -220,15 +244,23 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
             fprintf(archivo, aux_nodo_donacion->estado_donacion?"estado donacion: disponible\n": "estado donacion: no disponible\n");
             fputs("\n", archivo);
         }
+    }
 
     aux_necesidad = lista_necesidad->reparaciones;
     fputs("REPARACIONES:\n", archivo);
     fputs("\n", archivo);
-
-    for(aux_nodo_donacion = aux_necesidad->nodo_donacion; aux_necesidad ; aux_nodo_donacion = aux_necesidad->nodo_donacion)
+    if(aux_necesidad == NULL)
+    {
+        fputs("LISTA VACIA\n", archivo);
+        fputs("\n", archivo);
+    }
+    else
+    {
+    for(; aux_necesidad != NULL ;)
         {
+            aux_nodo_donacion = aux_necesidad->nodo_donacion;
             aux_necesidad = aux_necesidad->siguiente_donacion;
-            
+
             fputs("donacion:\n", archivo);
             fputs("fecha: ", archivo);
             for(int i = 0; i < 2; i++)
@@ -261,7 +293,8 @@ void escribir_asignacion_donaciones(char nombre_archivo[], lista_necesidad* list
             fprintf(archivo, aux_nodo_donacion->estado_donacion?"estado donacion: disponible\n": "estado donacion: no disponible\n");
             fputs("\n", archivo);
         }
-    
+    }
+
     fputs("--------------------", archivo);
     fclose(archivo);
     return;
