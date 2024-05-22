@@ -33,7 +33,7 @@ donante* buscar_usuario(lista_donantes* list, int cedula);
 // FUNCIONES DE DONACIONES
 
 // funcion que crea una nodo_donacion
-nodo_donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad, int estado);
+nodo_donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad, int estado, int asignacion);
 
 //funcion insertar nodo_donacion
 void insertar_donacion(lista_donantes* list, nodo_donacion* new_donacion, int cedula);

@@ -18,6 +18,7 @@ typedef struct donaciones
     float valor_monetario;
     int estado_donacion; 
     struct donaciones* siguiente_donacion;
+    int asignacion;
 
 }nodo_donacion;
 
@@ -233,7 +234,7 @@ donante* buscar_usuario(lista_donantes* list, int cedula)
 // FUNCIONES DE DONACIONES
 
 //funcion que crea una nodo_donacion
-nodo_donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad, int estado)
+nodo_donacion* crear_donacion(int fecha[], int tipo_donacion, char* descripcion, float valor_monetario, int cantidad, int estado, int asignacion)
 {
     // reservar memoria nodo_donacion
     nodo_donacion* new_donacion = (nodo_donacion*)malloc(sizeof(nodo_donacion));
