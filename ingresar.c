@@ -1,8 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "funciones_manejo_estructuras.c"
-#define longitud_fecha 3
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include "funciones_manejo_estructuras.h"
+# include "funciones_escribir_archivo.h"
+# include "funciones_leer_archivos.h"
 
 // Función para ingresar datos de donantes
 donante *ingresarDonante(lista_donantes *Lista_donante)
@@ -47,6 +48,7 @@ nodo_donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador,
     int fecha[3];
     char aux[100];
     int estado;
+    int asignacion;
 
     printf("Ingrese la fecha. \n");
 
@@ -94,23 +96,7 @@ nodo_donacion *ingresarDonacion(lista_donantes *Lista_donante, donante *donador,
         ingresa_articulo(listado_articulo, nuevo_articulo);
     }
 
-    nodo_donacion *nueva_donacion = crear_donacion(fecha, tipo_donacion, aux, valor_monetario, cantidad, estado);
-
-    if (donador->donaciones == NULL)
-    {
-
-        donador->donaciones = nueva_donacion;
-    }
-    else
-    {
-
-        nodo_donacion *actual = donador->donaciones;
-        while (actual->siguiente_donacion != NULL)
-        {
-            actual = actual->siguiente_donacion;
-        }
-        actual->siguiente_donacion = nueva_donacion;
-    }
+    nodo_donacion *nueva_donacion = crear_donacion(fecha, tipo_donacion, aux, valor_monetario, cantidad, estado, asignacion);
 
     return nueva_donacion;
 }
@@ -177,7 +163,7 @@ int donar(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, lis
             {
                 
                 nodo_donacion *nueva_donacion = ingresarDonacion(Lista_donante, donador, listado_articulo);
-                printf("%p", (void*)nueva_donacion); //printf para verificar si esta guardando bien los datos 
+
                 asignarNecesidad(Lista_donante, listado_necesidad, nueva_donacion);
             }
             else
@@ -212,7 +198,10 @@ int donar(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, lis
 
 int main()
 {
-
+    char nombre_archivo[50];
+    printf("escribe el nombre del archivo: ");
+    scanf("%s", &nombre_archivo);
+    printf("\n");
     int bandera = 1;
     int opcion = 1;
 
@@ -224,6 +213,7 @@ int main()
 
     donante *donador = NULL;
 
+    leer_donaciones(nombre_archivo, Lista_donante, listado_articulo, listado_necesidad);
 
     while (bandera != 0)
     {
@@ -240,8 +230,7 @@ int main()
         }
         else if (opcion == 3)
         {
-            //
-            printf("\n");
+            escribir_archivo(nombre_archivo, listado_articulo, Lista_donante, listado_necesidad);
         }
         else if (opcion == 4)
         {
@@ -257,3 +246,4 @@ int main()
 
     return 0;
 }
+   
