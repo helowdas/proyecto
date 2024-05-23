@@ -154,7 +154,7 @@ int donar(lista_donantes *Lista_donante, lista_necesidad *listado_necesidad, lis
         {
             printf("Usuario encontrado.\n");
 
-            //donacion *donador = ingresarDonante(Lista_donante)
+            
 
             
 
