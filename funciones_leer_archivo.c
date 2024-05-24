@@ -36,8 +36,14 @@ void leer_donaciones(char nombre_archivo[], lista_donantes* list_donantes, lista
     int asignacion  = 0;
     int cantidad = 0;
 
-    fgets(linea, sizeof(linea), archivo);
-    while(strstr(linea , "--------------------") == NULL)
+    if (fgets(linea, sizeof(linea), archivo) == NULL)
+    {
+        fclose(archivo);
+        return;
+    }
+
+    
+    while(strstr(linea , "--------------------") == NULL )
     {
         if(linea[strlen(linea)-1] == '\n')
         {
@@ -538,7 +544,12 @@ void leer_donaciones(char nombre_archivo[], lista_donantes* list_donantes, lista
                     }
                 }
 
-                fgets(linea, sizeof(linea), archivo);
+                if (fgets(linea, sizeof(linea), archivo) == NULL)
+                {
+                    fclose(archivo);
+                    return;
+                }
+                
                 if(linea[strlen(linea)-1] == '\n')
                 {
                     linea[strlen(linea)-1] = '\0';
